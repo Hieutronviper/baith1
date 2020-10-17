@@ -1,63 +1,37 @@
 ﻿using System;
-using System.Security.Cryptography.X509Certificates;
 
-namespace bai_tap_3
+namespace bths1
 {
-    class Stack
+    class DIEM
     {
-        private int top;
-        private int[] s;
-        public Stack()
+        private double x, y;
+        public DIEM()
         {
-            top = -1;
-            s = new int[20];
+            x = y = 0;
         }
-        public Stack(int n)
+        public DIEM(double x, double y)
         {
-            top = -1;
-            s = new int[n];
+            this.x = x; this.y = y;
         }
-        public bool empty()
+        public void nhap()
         {
-            return top == -1;
+            Console.Write("nhap x "); x = double.Parse(Console.ReadLine());
+            Console.Write("nhap y "); y = double.Parse(Console.ReadLine());
         }
-        public bool full()
+        public void hien()
         {
-            return top == s.Length - 1;
+            Console.WriteLine("toa do la{0},{1} ", x, y);
         }
-        public void push(int x)
+        public double khoangcach(DIEM b)
         {
-            if (full())
-
-                Console.WriteLine("stack day");
-            else
-                s[++top] = x;
+            return Math.Sqrt(Math.Pow(b.x - this.x, 2) + Math.Pow(b.y - this.y, 2));
         }
-        public int pop()
+        static void Main(string[] args)
         {
-            if (empty()) throw new Exception("stack rong");
-            else
-            {
-                int x = s[top--];
-                return x;
-            }
-        }
-        class app
-        {
-            static void Main(string[] args)
-            {
-                //int n;
-                //Console.WriteLine("nhap so nguyen n");
-                //n = int.Parse(Console.ReadLine());
-                Stack s = new Stack();
-                s.push(3);
-                s.push(3);
-                s.push(4);
-                s.pop();
-                while (!s.empty())
-                    Console.Write(s.pop());
-                Console.ReadKey();
-            }
+            DIEM a = new DIEM(); a.nhap(); a.hien();
+            DIEM b = new DIEM(); b.nhap(); b.hien();
+            Console.WriteLine("khoang cach la" + a.khoangcach(b));
+            Console.ReadKey();
         }
     }
 }
